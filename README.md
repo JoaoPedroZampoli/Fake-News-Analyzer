@@ -21,7 +21,33 @@ Final project for the Artificial Intelligence course [2025.1] at ICT - Unifesp
 - TensorFlow & Hugging Face Transformers (for BERT)
 
 ## 📦 Project Structure
-
+    ```
+    Fake-News-Analyzer/
+    │   .gitattributes
+    │   Apresentação Final - Fake News Analyzer.pdf
+    │   Fake News Analyzer.ipynb
+    │   pre-processed.csv
+    │   README.md
+    │   Relatório - Detecção de Fake News usando NLP.pdf
+    │
+    └───modelos/
+        │   knn_model.pkl
+        │   knn_vectorizer.pkl
+        │   naive_bayes_model.pkl
+        │   naive_bayes_vectorizer.pkl
+        │   svm_model.pkl
+        │   svm_vectorizer.pkl
+        │
+        └───bert/
+            ├───bert_model/
+            │       config.json
+            │       tf_model.h5
+            │
+            └───bert_tokenizer/
+                    special_tokens_map.json
+                    tokenizer_config.json
+                    vocab.txt
+    ```
 
 ## ⚡ Getting Started
 
