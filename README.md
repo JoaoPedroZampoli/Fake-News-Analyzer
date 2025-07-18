@@ -21,7 +21,6 @@ Final project for the Artificial Intelligence course [2025.1] at ICT - Unifesp
 - TensorFlow & Hugging Face Transformers (for BERT)
 
 ## 📦 Project Structure
-    ```
     Fake-News-Analyzer/
     │   .gitattributes
     │   Apresentação Final - Fake News Analyzer.pdf
@@ -47,11 +46,10 @@ Final project for the Artificial Intelligence course [2025.1] at ICT - Unifesp
                     special_tokens_map.json
                     tokenizer_config.json
                     vocab.txt
-    ```
 
 ## ⚡ Getting Started
 
-1. **Clone the repository:**v
+1. **Clone the repository:**
     ```bash
     git clone https://github.com/JoaoPedroZampoli/Fake-News-Analyzer.git
     cd Fake-News-Analyzer
@@ -60,6 +58,9 @@ Final project for the Artificial Intelligence course [2025.1] at ICT - Unifesp
 2. **Install dependencies**
     ```
     pip install numpy pandas matplotlib seaborn tensorflow transformers scikit-learn
+
+3. **Create the models**
+   - run Fake News Analyzer.ipynb cells with Python to create new models if wanted
 
 ## 📄 License
 This project is for educational purposes.
