@@ -15,6 +15,9 @@ Special thanks to my partner, [Luiza de Souza Ferreira](https://github.com/souza
 - Training and evaluation of multiple ML models
 - Support for both classical ML and transformer-based models
 
+<img width="1189" height="590" alt="image" src="https://github.com/user-attachments/assets/6615b73c-7fbf-4ddb-883e-d757798923d6" />
+
+
 ## 🛠️ Technologies
 
 - Python 3.12+
