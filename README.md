@@ -1,6 +1,8 @@
 # Fake News Analyzer
 Final project for the Artificial Intelligence course [2025.1] at ICT - Unifesp
 
+Special thanks to my partner, [Luiza de Souza Ferreira](https://github.com/souza-luiza) for her contributions to this project
+
 <img width="5760" height="3240" alt="Trabalho Final de IA (1)" src="https://github.com/user-attachments/assets/737c1c58-e73a-4510-aca1-55e5680b0375" />
 
 ## 📚 About
