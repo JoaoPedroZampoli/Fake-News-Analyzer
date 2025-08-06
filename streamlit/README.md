@@ -15,19 +15,19 @@ Uma aplicação web abrangente para detecção de fake news usando múltiplos mo
 ## 🛠️ Modelos Utilizados
 
 1. **KNN (K-Nearest Neighbors)**
-   - Bag of Words: Acurácia ~85%
-   - TF-IDF: Acurácia ~88%
+   - Bag of Words: Acurácia ~70%
+   - TF-IDF: Acurácia ~69%
 
 2. **Naive Bayes (Multinomial)**
-   - Bag of Words: Acurácia ~92%
-   - TF-IDF: Acurácia ~94%
+   - Bag of Words: Acurácia ~82%
+   - TF-IDF: Acurácia ~59%
 
 3. **SVM (Support Vector Machine)**
-   - Bag of Words: Acurácia ~91%
-   - TF-IDF: Acurácia ~95%
+   - Bag of Words: Acurácia ~96%
+   - TF-IDF: Acurácia ~96%
 
 4. **BERT (Transformer)**
-   - Embeddings contextuais: Acurácia ~96%
+   - Embeddings contextuais: Acurácia ~87%
 
 ## 📋 Pré-requisitos
 
@@ -108,7 +108,6 @@ A aplicação será aberta automaticamente no seu navegador em `http://localhost
 ## 📝 Estrutura do Código
 
 - `ProjectPage.py`: Aplicação principal Streamlit
-- `requirements.txt`: Dependências necessárias
 - Modelos carregados dinamicamente da pasta `../modelos/`
 
 ## 🔍 Funcionalidades Técnicas
@@ -116,22 +115,12 @@ A aplicação será aberta automaticamente no seu navegador em `http://localhost
 - **Cache de Dados**: Uso de `@st.cache_data` e `@st.cache_resource` para performance
 - **Predições em Tempo Real**: Suporte a todos os 4 modelos
 - **Visualizações Plotly**: Gráficos interativos e responsivos
-- **CSS Customizado**: Interface moderna e profissional
 - **Tratamento de Erros**: Mensagens informativas em caso de problemas
-
-## 🎨 Customização
-
-O arquivo inclui CSS customizado para:
-- Cards de modelos estilizados
-- Cores baseadas na acurácia (verde/amarelo/vermelho)
-- Layout responsivo
-- Tipografia melhorada
 
 ## 🚨 Problemas Conhecidos
 
-- BERT pode ser lento em máquinas sem GPU
+- BERT pode ser lento em máquinas sem GPU (problema minimizado pelo tipo de inferência a ser feita)
 - Alguns modelos podem requerer versões específicas do scikit-learn
-- TensorFlow warnings são esperados para o BERT (use PyTorch quando possível)
 
 ## 📄 Licença
 
@@ -142,6 +131,7 @@ Este projeto está sob licença MIT. Veja o arquivo LICENSE para mais detalhes.
 - Python 3.8+
 - Streamlit
 - scikit-learn
+- TensorFlow
 - PyTorch
 - Transformers (Hugging Face)
 - Pandas, NumPy
@@ -170,17 +160,7 @@ Este projeto está sob licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 ## 🚀 Running the Application
 
-### Option 1: Using Python Script
-```bash
-python run_app.py
-```
-
-### Option 2: Using Batch File (Windows)
-```bash
-run_app.bat
-```
-
-### Option 3: Direct Streamlit Command
+### Direct Streamlit Command
 ```bash
 streamlit run ProjectPage.py
 ```
@@ -233,18 +213,11 @@ The application will start and automatically open in your default browser at `ht
    - Make sure PyTorch is installed correctly
    - Verify the BERT tokenizer directory exists and contains all files
 
-3. **Import errors**:
-   - Install all requirements: `pip install -r requirements.txt`
-   - Check Python version compatibility
-
 ### File Structure
 ```
 streamlit/
 ├── ProjectPage.py          # Main application
-├── run_app.py             # Python runner script
-├── run_app.bat            # Windows batch runner
-├── requirements.txt       # Dependencies
-└── README.md             # This file
+└── README.md               # This file
 
 ../modelos/               # Model files directory
 ├── knn_model.pkl
