@@ -215,17 +215,40 @@ def preprocess_text(text):
 def load_dataset():
     """Carrega o dataset pré-processado"""
     try:
-        data = pd.read_csv('../pre-processed.csv')
+        # Tentar primeiro na pasta pai (local)
+        if os.path.exists('../pre-processed.csv'):
+            data = pd.read_csv('../pre-processed.csv')
+        # Depois na raiz (deploy)
+        elif os.path.exists('pre-processed.csv'):
+            data = pd.read_csv('pre-processed.csv')
+        # Último caso: pasta streamlit
+        elif os.path.exists('streamlit/pre-processed.csv'):
+            data = pd.read_csv('streamlit/pre-processed.csv')
+        else:
+            st.error("Arquivo 'pre-processed.csv' não encontrado!")
+            return None
         return data
-    except FileNotFoundError:
-        st.error("Arquivo 'pre-processed.csv' não encontrado!")
+    except Exception as e:
+        st.error(f"Erro ao carregar dataset: {e}")
         return None
 
 @st.cache_resource
 def load_models():
     """Carrega todos os modelos salvos"""
     models = {}
-    base_path = '../modelos/'
+    
+    # Tentar diferentes caminhos
+    possible_paths = ['../modelos/', 'modelos/', 'streamlit/modelos/']
+    base_path = None
+    
+    for path in possible_paths:
+        if os.path.exists(path):
+            base_path = path
+            break
+    
+    if not base_path:
+        st.error("Pasta 'modelos/' não encontrada!")
+        return {}
     
     try:
         # KNN
@@ -246,13 +269,17 @@ def load_models():
         with open(f'{base_path}svm_vectorizer.pkl', 'rb') as f:
             models['svm_vectorizer'] = pickle.load(f)
         
-        # BERT
-        models['bert_tokenizer'] = BertTokenizer.from_pretrained(f'{base_path}bert/bert_tokenizer/')
+        # BERT - ajustar caminhos também
+        bert_tokenizer_path = f'{base_path}bert_tokenizer/' if os.path.exists(f'{base_path}bert_tokenizer/') else f'{base_path}bert/bert_tokenizer/'
+        models['bert_tokenizer'] = BertTokenizer.from_pretrained(bert_tokenizer_path)
+        
         bert_model = BertClassifier('bert-base-multilingual-cased')
-        bert_model.load_state_dict(torch.load(f'{base_path}bert/bert_pytorch_model.pth', map_location='cpu'))
+        bert_model_path = f'{base_path}bert_pytorch_model.pth' if os.path.exists(f'{base_path}bert_pytorch_model.pth') else f'{base_path}bert/bert_pytorch_model.pth'
+        bert_model.load_state_dict(torch.load(bert_model_path, map_location='cpu'))
         models['bert_model'] = bert_model
         
-        with open(f'{base_path}bert/label_encoder.pkl', 'rb') as f:
+        label_encoder_path = f'{base_path}label_encoder.pkl' if os.path.exists(f'{base_path}label_encoder.pkl') else f'{base_path}bert/label_encoder.pkl'
+        with open(label_encoder_path, 'rb') as f:
             models['label_encoder'] = pickle.load(f)
             
         return models
